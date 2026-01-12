@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quingo-gateway-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quingo-gateway
+  template:
+    metadata:
+      labels:
+        app: quingo-gateway
+    spec:
+      containers:
+        - name: gateway-container
+          image: artem5252/quingo-gateway:latest
+          env:
+            - name: MAIN_SERVICE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: gateway-secret
+                  key: MAIN_SERVICE_HOST
+          ports:
+            - containerPort: 8080

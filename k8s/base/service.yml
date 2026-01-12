@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quingo-gateway-service
+spec:
+  selector:
+    app: quingo-gateway
+  ports:
+    - port: 80
+      targetPort: 8080

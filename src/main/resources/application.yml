@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: quizzes-route
+              uri: http://${MAIN_SERVICE_HOST}
+              predicates:
+                - Path=/quizzes/**
+
+            - id: users-route
+              uri: http://${MAIN_SERVICE_HOST}
+              predicates:
+                - Path=/users/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
