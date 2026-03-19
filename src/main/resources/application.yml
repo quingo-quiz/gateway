@@ -7,6 +7,11 @@ spring:
       server:
         webflux:
           routes:
+            - id: auth-route
+              uri: http://${AUTH_SERVICE_HOST}
+              predicates:
+                - Path=/auth/**
+
             - id: quizzes-route
               uri: http://${MAIN_SERVICE_HOST}
               predicates:
