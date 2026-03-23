@@ -4,6 +4,10 @@ spring:
 
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
       server:
         webflux:
           routes:
