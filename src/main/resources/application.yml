@@ -27,17 +27,17 @@ spring:
             - id: auth-route
               uri: http://${AUTH_SERVICE_HOST}
               predicates:
-                - Path=/auth/**
+                - Path=/api/auth/**
 
             - id: quizzes-route
               uri: http://${MAIN_SERVICE_HOST}
               predicates:
-                - Path=/quizzes/**
+                - Path=/api/quizzes/**
 
             - id: users-route
               uri: http://${MAIN_SERVICE_HOST}
               predicates:
-                - Path=/users/**
+                - Path=/api/users/**
 
 logging:
   level:
