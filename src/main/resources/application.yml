@@ -12,6 +12,7 @@ spring:
                 allowedOrigins:
                   - "https://quingo.arhr.tech"
                   - "https://docs-quingo.arhr.tech"
+                  - "http://localhost"
                 allowedMethods:
                   - GET
                   - POST
