@@ -9,7 +9,7 @@ spring:
           globalcors:
             cors-configurations:
               '[/**]':
-                allowedOrigins:
+                allowedOrigins: ${CORS_ALLOWED_ORIGINS}
                   - "https://quingo.arhr.tech"
                   - "https://docs-quingo.arhr.tech"
                   - "http://localhost"
