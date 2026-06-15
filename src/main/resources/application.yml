@@ -50,6 +50,19 @@ spring:
 auth-service:
   public-key-url: http://${AUTH_SERVICE_HOST}/api/auth/.well-known/jwt-public-key
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+        spring.cloud.gateway.requests: true
+
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
