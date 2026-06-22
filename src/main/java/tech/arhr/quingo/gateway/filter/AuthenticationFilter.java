@@ -52,7 +52,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
 
-        if (path.startsWith("/api/auth")) {
+        if (isPublic(path)) {
             return chain.filter(exchange.mutate().request(stripUserHeaders(request)).build());
         }
 
@@ -72,6 +72,13 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                 .flatMap(blocked -> blocked
                         ? unauthorized(exchange, "Token is revoked")
                         : chain.filter(exchange.mutate().request(withUserHeaders(request, user)).build()));
+    }
+
+    /**
+     * Публичные пути, не требующие авторизации.
+     */
+    private boolean isPublic(String path) {
+        return path.startsWith("/api/auth") || path.startsWith("/api/catalog");
     }
 
     private String extractToken(ServerHttpRequest request) {
